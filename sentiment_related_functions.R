@@ -58,3 +58,23 @@ score.sentiment = function(sentences, pos.words, neg.words, .progress='none')
   scores.df = data.frame(text=sentences, score=scores)
   return(scores.df)
 }
+                   
+                   
+                   
+ # clean tweets                
+clean <- function(object){
+  #remove retweet entities
+  object= gsub("(RT|via)((?:\\b\\W*@\\w+)+)", "", object)
+  #remove at people
+  object= gsub("@\\w+", "", object)
+  # remove punctuation
+  object= gsub("[[:punct:]]", "", object)
+  # remove numbers
+  object = gsub("[[:digit:]]", "", object)
+  # remove html links
+  object = gsub("http\\w+", "", object)
+  # remove unnecessary spaces
+  object = gsub("[ \t]{2,}", "", object)
+  object = gsub("^\\s+|\\s+$", "", object)
+  return(object)
+}                   
