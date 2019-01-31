@@ -76,5 +76,7 @@ clean <- function(object){
   # remove unnecessary spaces
   object = gsub("[ \t]{2,}", "", object)
   object = gsub("^\\s+|\\s+$", "", object)
+  # remove duplicated rows
+  object = object[!duplicated(object)]
   return(object)
 }                   
